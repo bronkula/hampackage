@@ -14,9 +14,9 @@ $hp->gather(
 
 $hp->runLocal();
 
-$hp->runPackage("fileedit.full.php");
+$hp->runPackage("project.full.php");
 
 $hp->minify();
-$hp->runPackage("fileedit.min.php");
+$hp->runPackage("project.min.php");
 
 ?>
