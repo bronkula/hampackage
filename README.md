@@ -3,7 +3,7 @@ hampackage
 
 A Packaging class for php
 
-This script allows you to work on a local php file that both loads a local stream and outputs finalized and minifed files.
+This script allows you to work on a local php file that both loads a local stream and outputs finalized and minifed files.  If your next thought is "Why would I want this?" that's fair, I guess.  But I use it to create one page scripts.  Autonomous applications that can be loaded onto a server with all of their dependencies built into one file.
 
 An example file has been included.
 
