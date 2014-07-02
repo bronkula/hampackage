@@ -1,5 +1,7 @@
 <?
 
+// Created by Hamilton Cline hamdiggy@gmail.com
+
 class HamPackage{
 	public $stream = "";
 
@@ -30,7 +32,6 @@ class HamPackage{
 	function minify(){
 		$patterns = array(
 			'/\/\*.+?\*\//s',
-			// '/\/\/.+/',
 			'/[ \t]{2,}/',
 			'/[ \t\n\r]{2,}/',
 			'/\?>\<\?php/',
@@ -38,7 +39,6 @@ class HamPackage{
 			);
 		$replacements = array(
 			"",
-			// "",
 			" ",
 			"\n",
 			"",
