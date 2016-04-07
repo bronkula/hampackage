@@ -1,6 +1,7 @@
 <?
 
 // Created by Hamilton Cline hamdiggy@gmail.com
+// Last edit 2016
 
 class HamPackage{
 	public $stream = "";
