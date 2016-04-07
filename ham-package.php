@@ -25,8 +25,11 @@ class HamPackage{
 			$this->buildfail("Couldn't build to ".output);
 		}
 	}
-	function runLocal(){
-		if(eval($this->streamStrip($this->stream))===false) {
+	function runLocal($isPHP=true){
+		if(!$isPHP) {
+			echo $this->stream;
+		}
+		else if(eval($this->streamStrip($this->stream))===false) {
 			$this->buildfail("Couldn't stream to php");
 		}
 	}
@@ -48,7 +51,7 @@ class HamPackage{
 			"",
 			"\n"
 			);
-		$this->stream = preg_replace($patterns,$replacements,$this->stream);
+		return preg_replace($patterns,$replacements,$this->stream);
 	}
 
 	function buildfail($string){
