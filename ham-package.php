@@ -17,7 +17,10 @@ class HamPackage{
 		}
 	}
 	function runPackage($output){
-		if(@file_put_contents($output,$this->stream)===false) {
+		$this->buildPackage($this->stream,$output);
+	}
+	function buildPackage($input,$output){
+		if(@file_put_contents($output,$input)===false) {
 			$this->buildfail("Couldn't build to ".output);
 		}
 	}
