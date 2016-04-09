@@ -8,11 +8,16 @@ This script allows you to work on a local php file that both loads a local strea
 An example file has been included.
 
 Methods of the class are:
-- gather();
-  - The gather method accepts an array of files to be included in the stream. Each new call to gather will create a new stream, so that multiple versions of the script can be output (especially useful if your local server has different settings than the production server).
-- runLocal();
-  - The runLocal method will out the current stream to a php eval so that the script can be run immediately.
-- minify();
-  - The minifier is really quite basic, and just removes excess whitespace, and stream comments.
-- runPackage();
-  - The runPackage method accepts a string for a file to output the current stream.
+- **append**();
+  - Append will add a string to the current stream
+- **arrange**();
+  - Arrange will append an array of strings to the current stream
+- **gather**();
+  - Gather accepts an array of filenames to be included in the stream. An empty string will be ignored.
+- **runLocal**();
+  - RunLocal will output the current stream to a php eval so that the script can be run immediately. If a false flag is passed for the second argument, it will simply be echoed as a string, instead of eval for php.
+- **minify**();
+  - Minify will return a condensed version of the stream, but will not alter the original. This is not an uglifier, it simply removes comments and whitespace.
+- **buildPackage**();
+  - BuildPackage will output a string to a given filename
+  - If a second argument string is passed, it will build that string to the filename
