@@ -1,27 +1,30 @@
 <?
-
 // Created by Hamilton Cline hamdiggy@gmail.com
-// Last edit 2016/04/06
+// Last updated on 2016/04/07
 
 class HamPackage{
-	public $stream = "";
-
-	function gather($arr){
-		$this->stream = "";
+	private $stream = "";
+	function gather($arr,$append=true){
+		$output = "";
 		foreach($arr as $key=>$file) {
+			if(!$file) continue;
 			$fileContents = @file_get_contents($file);
 			if($fileContents===false){
 				$this->buildfail("Couldn't read contents of ".$file);
 			} else {
-				$this->stream .= $fileContents;
+				$output .= $fileContents;
 			}
 		}
+		return $append ? $this->append($output) : $output;
 	}
-	function runPackage($output){
-		$this->buildPackage($this->stream,$output);
+	function arrange($arr,$append=true){
+		return $append ? $this->append(implode("",$arr)) : implode("",$arr);
 	}
-	function buildPackage($input,$output){
-		if(@file_put_contents($output,$input)===false) {
+	function append($str) {
+		return $this->stream.=$str;
+	}
+	function buildPackage($output,$input=false){
+		if(@file_put_contents($output,$input!==false?$input:$this->stream)===false) {
 			$this->buildfail("Couldn't build to ".output);
 		}
 	}
@@ -39,24 +42,24 @@ class HamPackage{
 	function minify(){
 		$patterns = array(
 			'/\/\*.+?\*\//s',
+			'/\/\/.+/',
 			'/[ \t]{2,}/',
-			'/[ \t\n\r]{2,}/',
+			'/[ \t\n\r]+/',
 			'/\?>\<\?php/',
-			'/[ \t\n\r]{2,}/'
+			'/[ \t\n\r]+/'
 			);
 		$replacements = array(
 			"",
-			" ",
-			"\n",
 			"",
-			"\n"
+			" ",
+			" ",
+			"",
+			" "
 			);
 		return preg_replace($patterns,$replacements,$this->stream);
 	}
-
 	function buildfail($string){
 		die($string);
 	}
 }
-
 ?>
